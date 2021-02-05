@@ -1,10 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { AppProps } from 'next/app'
-import { setupStore } from '@/store'
-
-// ストアを作成
-const store = setupStore()
+import { store } from '@/store/store'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
