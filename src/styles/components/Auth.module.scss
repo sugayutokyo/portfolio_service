@@ -6,7 +6,7 @@ $avatar_image_loaded_color: whitesmoke;
   cursor: pointer;
   color: $login_register_toggle_color;
 }
-.login_reset {
+.reset_password {
   cursor: pointer;
 }
 .hidden {
@@ -24,4 +24,7 @@ $avatar_image_loaded_color: whitesmoke;
 .reset_password_form {
   width: 100%;
   margin: 8px 0px;
+}
+.reset_password_text_field {
+  width: 100%;
 }
