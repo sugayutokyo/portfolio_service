@@ -13,10 +13,8 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 }
 
-let firebaseApp = null
-if (firebase.apps.length === 0) {
-  firebaseApp = firebase.initializeApp(firebaseConfig)
-}
+const firebaseApp = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
+
 export const db = firebaseApp.firestore()
 export const auth = firebase.auth()
 export const storage = firebase.storage()
