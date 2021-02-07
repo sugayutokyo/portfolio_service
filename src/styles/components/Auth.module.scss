@@ -1,0 +1,27 @@
+$login_register_toggle_color: #0000ff;
+$avatar_image_unloaded_color: gray;
+$avatar_image_loaded_color: whitesmoke;
+
+.login_register_toggle {
+  cursor: pointer;
+  color: $login_register_toggle_color;
+}
+.login_reset {
+  cursor: pointer;
+}
+.hidden {
+  text-align: center;
+  display: none;
+}
+.avatar_image_unloaded {
+  cursor: pointer;
+  color: $avatar_image_unloaded_color;
+}
+.avatar_image_loaded {
+  cursor: pointer;
+  color: $avatar_image_loaded_color;
+}
+.reset_password_form {
+  width: 100%;
+  margin: 8px 0px;
+}
