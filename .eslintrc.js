@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     node: true,
+    browser: true, //ブラウザ関連のglobal変数はeslintの対象から除外する
   },
   extends: [
     'eslint:recommended', // defaultのルールを使用
