@@ -17,7 +17,7 @@ import CameraIcon from '@material-ui/icons/Camera'
 import EmailIcon from '@material-ui/icons/Email'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import styles from '@/styles/components/Auth.module.scss'
-import { genRandomChar } from '@/modules/utilFunction'
+import { genRandomChar } from '@/libraries/utilFunction'
 
 const useStyles = makeStyles((theme) => ({
   paper: {

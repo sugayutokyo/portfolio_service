@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { applyModelStyle } from '@/modules/utilFunction'
+import { applyModelStyle } from '@/libraries/utilFunction'
 import { makeStyles, Theme, createStyles, Modal } from '@material-ui/core'
 import Auth from '@/components/Auth'
 
