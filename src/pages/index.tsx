@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUser, login, logout } from '@/store/userSlice'
 import { auth } from '@/firebase'
-import Header from '@/components/Header'
 
 const Home: React.FC = () => {
   const user = useSelector(selectUser)
@@ -29,7 +28,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Header />
       {user.uid ? (
         <div>login成功</div>
       ) : (

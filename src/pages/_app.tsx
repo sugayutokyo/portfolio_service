@@ -5,6 +5,7 @@ import { store } from '@/store/store'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '@/styles/theme'
 import '@/styles/global.scss'
+import Header from '@/components/Header'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
@@ -18,6 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
+        <Header />
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>
