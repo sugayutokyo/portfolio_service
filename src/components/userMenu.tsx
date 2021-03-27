@@ -1,8 +1,8 @@
 import React from 'react'
 import { auth } from '@/firebase'
-import { IconButton } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import { Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem, Button, IconButton } from '@material-ui/core'
+import Link from 'next/link'
 
 const userMenu = () => {
   const [userAnchorEl, setUserAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -10,6 +10,11 @@ const userMenu = () => {
 
   return (
     <>
+      <Link href="/notes/new">
+        <Button variant="contained" color="primary">
+          投稿
+        </Button>
+      </Link>
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"
