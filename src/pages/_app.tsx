@@ -1,20 +1,20 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import { AppProps } from 'next/app'
-import { store } from '@/store/store'
-import { ThemeProvider } from '@material-ui/core/styles'
-import theme from '@/styles/theme'
-import '@/styles/global.scss'
-import Header from '@/components/Header'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { AppProps } from 'next/app';
+import { store } from '@/store/store';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from '@/styles/theme';
+import '@/styles/global.scss';
+import Header from '@/components/Header';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
     // MaterialUIをSSRで扱う際に、MaterialUIで生成されたCSSを一度削除する
-    const jssStyles = document.querySelector('#jss-server-side')
+    const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles)
+      jssStyles.parentElement.removeChild(jssStyles);
     }
-  }, [])
+  }, []);
 
   return (
     <Provider store={store}>
@@ -23,7 +23,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>
-  )
-}
+  );
+};
 
-export default MyApp
+export default MyApp;

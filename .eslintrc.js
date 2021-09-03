@@ -16,10 +16,10 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    // 文末のセミコロンを省略
-    semi: ['error', 'never', { beforeStatementContinuationChars: 'never' }],
+    // セミコロンをつける
+    semi: ['error', 'always'],
     'semi-spacing': ['error', { after: true, before: false }],
-    'semi-style': ['error', 'first'],
+    'semi-style': ['error', 'last'],
     'no-extra-semi': 'error',
     'no-unexpected-multiline': 'error',
     'no-unreachable': 'error',
@@ -29,4 +29,4 @@ module.exports = {
       version: 'detect',
     },
   },
-}
+};
