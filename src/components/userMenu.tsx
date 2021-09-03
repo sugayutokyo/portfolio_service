@@ -1,12 +1,12 @@
-import React from 'react'
-import { auth } from '@/firebase'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import { Menu, MenuItem, Button, IconButton } from '@material-ui/core'
-import Link from 'next/link'
+import React from 'react';
+import { auth } from '@/firebase';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import { Menu, MenuItem, Button, IconButton } from '@material-ui/core';
+import Link from 'next/link';
 
 const userMenu = () => {
-  const [userAnchorEl, setUserAnchorEl] = React.useState<null | HTMLElement>(null)
-  const isUserMenuOpen = Boolean(userAnchorEl)
+  const [userAnchorEl, setUserAnchorEl] = React.useState<null | HTMLElement>(null);
+  const isUserMenuOpen = Boolean(userAnchorEl);
 
   return (
     <>
@@ -43,15 +43,15 @@ const userMenu = () => {
         <MenuItem onClick={() => setUserAnchorEl(null)}>Profile</MenuItem>
         <MenuItem
           onClick={() => {
-            setUserAnchorEl(null)
-            auth.signOut()
+            setUserAnchorEl(null);
+            auth.signOut();
           }}
         >
           Logout
         </MenuItem>
       </Menu>
     </>
-  )
-}
+  );
+};
 
-export default userMenu
+export default userMenu;

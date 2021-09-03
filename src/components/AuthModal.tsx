@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { applyModelStyle } from '@/libraries/utilFunction'
-import { makeStyles, Theme, createStyles, Modal } from '@material-ui/core'
-import Auth from '@/components/Auth'
+import React, { useState } from 'react';
+import { applyModelStyle } from '@/libraries/utilFunction';
+import { makeStyles, Theme, createStyles, Modal } from '@material-ui/core';
+import Auth from '@/components/Auth';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,16 +14,16 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2, 4, 3),
     },
   }),
-)
+);
 
 type Props = {
-  isOpen: boolean
-  setOpenModal: Function
-}
+  isOpen: boolean;
+  setOpenModal: Function;
+};
 
 const AuthModal: React.FC<Props> = ({ isOpen, setOpenModal }) => {
-  const classes = useStyles()
-  const [modalStyle] = useState(applyModelStyle)
+  const classes = useStyles();
+  const [modalStyle] = useState(applyModelStyle);
 
   return (
     <Modal open={isOpen} onClose={() => setOpenModal(false)}>
@@ -31,7 +31,7 @@ const AuthModal: React.FC<Props> = ({ isOpen, setOpenModal }) => {
         <Auth closeAuthScreen={() => setOpenModal()} />
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default AuthModal
+export default AuthModal;

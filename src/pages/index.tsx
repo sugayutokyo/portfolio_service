@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectUser, login, logout } from '@/store/userSlice'
-import { auth } from '@/firebase'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser, login, logout } from '@/store/userSlice';
+import { auth } from '@/firebase';
 
 const Home: React.FC = () => {
-  const user = useSelector(selectUser)
-  const dispatch = useDispatch()
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unSub = auth.onAuthStateChanged((authUser) => {
@@ -16,15 +16,15 @@ const Home: React.FC = () => {
             photoUrl: authUser.photoURL,
             displayName: authUser.displayName,
           }),
-        )
+        );
       } else {
-        dispatch(logout())
+        dispatch(logout());
       }
-    })
+    });
     return () => {
-      unSub()
-    }
-  }, [dispatch])
+      unSub();
+    };
+  }, [dispatch]);
 
   return (
     <>
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

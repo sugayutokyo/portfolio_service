@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { updateUserProfile } from '@/store/userSlice'
-import { auth, provider, storage } from '@/firebase'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUserProfile } from '@/store/userSlice';
+import { auth, provider, storage } from '@/firebase';
 import {
   Avatar,
   Button,
@@ -11,13 +11,13 @@ import {
   makeStyles,
   IconButton,
   Box,
-} from '@material-ui/core'
-import SendIcon from '@material-ui/icons/Send'
-import CameraIcon from '@material-ui/icons/Camera'
-import EmailIcon from '@material-ui/icons/Email'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import styles from '@/styles/components/Auth.module.scss'
-import { genRandomChar } from '@/libraries/utilFunction'
+} from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
+import CameraIcon from '@material-ui/icons/Camera';
+import EmailIcon from '@material-ui/icons/Email';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import styles from '@/styles/components/Auth.module.scss';
+import { genRandomChar } from '@/libraries/utilFunction';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,70 +37,70 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}))
+}));
 
 type Props = {
-  closeAuthScreen: () => void
-}
+  closeAuthScreen: () => void;
+};
 
 const Auth: React.FC<Props> = ({ closeAuthScreen }) => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLogin, setIsLogin] = useState(true)
-  const [username, setUsername] = useState('')
-  const [avatarImage, setAvatarImage] = useState<File | null>(null)
-  const [resetEmail, setResetEmail] = useState('')
-  const [isOpenResetPasswordForm, setIsOpenResetPasswordForm] = useState(false)
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLogin, setIsLogin] = useState(true);
+  const [username, setUsername] = useState('');
+  const [avatarImage, setAvatarImage] = useState<File | null>(null);
+  const [resetEmail, setResetEmail] = useState('');
+  const [isOpenResetPasswordForm, setIsOpenResetPasswordForm] = useState(false);
 
   const sendResetEmail = async () => {
     await auth
       .sendPasswordResetEmail(resetEmail)
       .then(() => {
-        setIsOpenResetPasswordForm(false)
-        setResetEmail('')
+        setIsOpenResetPasswordForm(false);
+        setResetEmail('');
       })
       .catch((err) => {
-        alert(err.message)
-        setResetEmail('')
-      })
-  }
+        alert(err.message);
+        setResetEmail('');
+      });
+  };
   const onChangeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files![0]) {
-      setAvatarImage(e.target.files![0])
-      e.target.value = ''
+      setAvatarImage(e.target.files![0]);
+      e.target.value = '';
     }
-  }
+  };
   const signInEmail = async () => {
-    await auth.signInWithEmailAndPassword(email, password)
-  }
+    await auth.signInWithEmailAndPassword(email, password);
+  };
   const signUpEmail = async () => {
-    const authUser = await auth.createUserWithEmailAndPassword(email, password)
-    let url = ''
+    const authUser = await auth.createUserWithEmailAndPassword(email, password);
+    let url = '';
     if (avatarImage) {
       // firebaseの仕様で同じファイル名の画像を複数uploadすると、元々あった名前が削除されてしまうのを防ぐ
       // そのためランダムなファイル名を作成する必要がある
-      const fileName = genRandomChar() + '_' + avatarImage.name
-      await storage.ref(`avatars/${fileName}`).put(avatarImage) // 画像をavatars/にuploadする
-      url = await storage.ref('avatars').child(fileName).getDownloadURL() // uploadした画像のURLを取得する
+      const fileName = genRandomChar() + '_' + avatarImage.name;
+      await storage.ref(`avatars/${fileName}`).put(avatarImage); // 画像をavatars/にuploadする
+      url = await storage.ref('avatars').child(fileName).getDownloadURL(); // uploadした画像のURLを取得する
     }
     await authUser.user?.updateProfile({
       displayName: username,
       photoURL: url,
-    })
+    });
     dispatch(
       updateUserProfile({
         displayName: username,
         photoUrl: url,
       }),
-    )
-  }
+    );
+  };
 
   const signInGoogle = async () => {
-    closeAuthScreen()
-    await auth.signInWithPopup(provider).catch((err) => alert(err.message))
-  }
+    closeAuthScreen();
+    await auth.signInWithPopup(provider).catch((err) => alert(err.message));
+  };
 
   return (
     <Grid container>
@@ -124,7 +124,7 @@ const Auth: React.FC<Props> = ({ closeAuthScreen }) => {
                 autoFocus
                 value={username}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setUsername(e.target.value)
+                  setUsername(e.target.value);
                 }}
               />
               <Box textAlign="center">
@@ -154,7 +154,7 @@ const Auth: React.FC<Props> = ({ closeAuthScreen }) => {
             autoFocus
             value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setEmail(e.target.value)
+              setEmail(e.target.value);
             }}
           />
           <TextField
@@ -169,7 +169,7 @@ const Auth: React.FC<Props> = ({ closeAuthScreen }) => {
             autoComplete="current-password"
             value={password}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setPassword(e.target.value)
+              setPassword(e.target.value);
             }}
           />
           <Button
@@ -187,17 +187,17 @@ const Auth: React.FC<Props> = ({ closeAuthScreen }) => {
               isLogin
                 ? async () => {
                     try {
-                      await signInEmail()
+                      await signInEmail();
                     } catch (err) {
-                      alert(err.message)
+                      alert(err.message);
                     }
-                    closeAuthScreen()
+                    closeAuthScreen();
                   }
                 : async () => {
                     try {
-                      await signUpEmail()
+                      await signUpEmail();
                     } catch (err) {
-                      alert(err.message)
+                      alert(err.message);
                     }
                   }
             }
@@ -233,7 +233,7 @@ const Auth: React.FC<Props> = ({ closeAuthScreen }) => {
                 label="Reset E-mail"
                 value={resetEmail}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setResetEmail(e.target.value)
+                  setResetEmail(e.target.value);
                 }}
               />
             </Grid>
@@ -259,7 +259,7 @@ const Auth: React.FC<Props> = ({ closeAuthScreen }) => {
         </Button>
       </div>
     </Grid>
-  )
-}
+  );
+};
 
-export default Auth
+export default Auth;
