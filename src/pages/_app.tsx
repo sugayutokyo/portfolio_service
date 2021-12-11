@@ -6,6 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '@/styles/theme';
 import '@/styles/global.scss';
 import Header from '@/components/Header';
+import 'tailwindcss/tailwind.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
