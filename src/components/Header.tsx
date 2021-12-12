@@ -1,49 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@/store/userSlice';
-import UserMenu from '@/components/UserMenu';
-import AuthModal from '@/components/AuthModal';
+import { auth, provider } from '@/firebase';
 import Logo from '@/components/Logo';
+import HeaderLink from '@/components/HeaderLink';
+import Router from 'next/router';
 
 const Header: React.FC = () => {
   const user = useSelector(selectUser);
-  const [isAuthScreen, setIsAuthScreen] = useState(false);
+  const signInGoogle = async () => {
+    await auth.signInWithPopup(provider).catch((err) => alert(err.message));
+  };
 
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-3">
         <Logo />
-        {/* ハンバーガメニュー */}
-        <div className="block lg:hidden">
-          <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-            <svg
-              className="fill-current h-3 w-3"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-          </button>
-        </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           {user.uid ? (
-            <UserMenu />
+            <ul className="flex">
+              <HeaderLink type="link" linkName="投稿" href="/notes/new" />
+              <HeaderLink
+                type="link"
+                linkName="Logout"
+                href="/"
+                onClickEvent={() => {
+                  auth.signOut();
+                }}
+              />
+            </ul>
           ) : (
             <ul className="flex">
-              <li className="mr-6">
-                <a className="text-white hover:text-red-200" onClick={() => setIsAuthScreen(true)}>
-                  Login
-                </a>
-              </li>
+              <HeaderLink
+                type="clickEvent"
+                linkName="Sign in with Google"
+                onClickEvent={() => signInGoogle()}
+              />
             </ul>
           )}
         </div>
       </nav>
-      <AuthModal
-        isOpen={isAuthScreen}
-        setOpenModal={(isOpen: boolean) => setIsAuthScreen(isOpen)}
-      />
     </>
   );
 };
