@@ -31,6 +31,7 @@ const HeaderLink: React.FC<Props> = ({ type, linkName, onClickEvent, href }) => 
       );
       break;
     default:
+      result = '';
       break;
   }
 
