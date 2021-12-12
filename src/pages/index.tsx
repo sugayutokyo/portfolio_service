@@ -32,7 +32,7 @@ const Home: React.FC = () => {
         <div>login成功</div>
       ) : (
         <>
-          <div>Loginしていません</div>
+          <div className="container px-5 py-4 mx-auto">Loginしていません</div>
         </>
       )}
     </>
