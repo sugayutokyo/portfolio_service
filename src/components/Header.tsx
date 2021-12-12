@@ -4,7 +4,6 @@ import { selectUser } from '@/store/userSlice';
 import { auth, provider } from '@/firebase';
 import Logo from '@/components/Logo';
 import HeaderLink from '@/components/HeaderLink';
-import Router from 'next/router';
 
 const Header: React.FC = () => {
   const user = useSelector(selectUser);
